@@ -18,7 +18,7 @@ public class ReviewController {
 	// 전달받은 id와 일치하는 리뷰정보를 json으로 response에 담는다 
 	@ResponseBody
 	@RequestMapping("/mybatis/review")
-	public Review review(@RequestParam("id") int id) {
+	public Review review(@RequestParam int id) {
 		// String idString = request.getParameter("id");
 		// int id = Integer.parseInt(idString);
 		
@@ -27,5 +27,7 @@ public class ReviewController {
 		
 		return review;
 	}
+	
+	
 
 }
