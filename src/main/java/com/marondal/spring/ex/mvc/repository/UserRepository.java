@@ -14,6 +14,8 @@ public interface UserRepository {
 			, @Param("email") String email
 			, @Param("introduce") String introduce);
 	
+	public int insertUserByObject(User user);
+	
 	// 가장 최근에 등록된 행 조회 
 	public User selectLastUser();
 }

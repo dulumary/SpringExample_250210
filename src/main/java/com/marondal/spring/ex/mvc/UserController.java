@@ -20,19 +20,31 @@ public class UserController {
 	private UserService userService;
 	
 	// 사용자 정보를 전달 받고 저장하는 기능
-	@ResponseBody
+//	@ResponseBody
 //	@RequestMapping(path="/mvc/user/create", method=RequestMethod.POST)
 	@PostMapping("/create")
 	public String createUser(
 			@RequestParam("name") String name
 			, @RequestParam("birthday") String birthday
 			, @RequestParam("email") String email
-			, @RequestParam("introduce") String introduce) {
+			, @RequestParam("introduce") String introduce
+			, Model model) {
 		
 		
-		int count = userService.addUser(name, birthday, email, introduce);
+//		int count = userService.addUser(name, birthday, email, introduce);
 		
-		return "삽입 결과 : " + count;
+		User user = new User();
+		user.setName(name);
+		user.setYyyymmdd(birthday);
+		user.setEmail(email);
+		user.setIntroduce(introduce);
+		
+		userService.addUserByObject(user);		
+		
+		model.addAttribute("user", user);
+//		return "삽입 결과 : " + count;
+//		return "redirect:/mvc/user/info";
+		return "mvc/userInfo";
 	}
 	
 	@GetMapping("/input")
