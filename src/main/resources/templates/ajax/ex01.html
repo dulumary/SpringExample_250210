@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h2>AJAX 테스트</h2>
+	
+	<label>이름</label><input type="text" id="nameInput">
+	<label>생년월일</label><input type="text" id="birthdayInput">
+	<button type="button" id="inputBtn">입력</button>
+	
+	<div>이름 : <span id="nameSpan"></span></div>
+	<div>나이 : <span id="ageSpan"></span></div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+	$(function() {
+		$("#inputBtn").on("click", function() {
+			let name = $("#nameInput").val();
+			let birthday = $("#birthdayInput").val();
+			
+			$.ajax({
+				type:"get"
+				, url:"/ajax/person"
+				, data:{"name":name, "birthday":birthday}
+				, success:function(response) {
+					// response가 정상적으로 전달되었을때 수행될 함수 
+					// response는 데이터를 표현하는 문자열로 전달
+					// json 문자열 
+					// jquery ajax 함수는 json 문자열이 response로 전달될 경우 
+					// 해당 문자열 데이터를 javascript 객체로 변환 해준다 
+					// {"name":"김인규", "age":29}
+					//alert(response.age);
+					$("#nameSpan").text(response.name);
+					$("#ageSpan").text(response.age);
+				}
+				, error:function() {}
+			});
+			
+			
+		});
+		
+	})
+</script>
+</body>
+</html>
