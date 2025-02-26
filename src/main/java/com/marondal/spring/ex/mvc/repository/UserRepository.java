@@ -18,4 +18,7 @@ public interface UserRepository {
 	
 	// 가장 최근에 등록된 행 조회 
 	public User selectLastUser();
+	
+	// 전달받은 email 과 일치하는 행의 개수 조회
+	public int selectCountByEmail(@Param("email") String email);
 }

@@ -60,4 +60,29 @@
 		LIMIT 
 			1
 	</select>
+	
+	<select id="selectCountByEmail" parameterType="string" resultType="int">
+		SELECT 
+			count(*)
+		FROM 
+			`new_user`
+		WHERE 
+			`email` = #{email}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>
